@@ -4,7 +4,8 @@ This app enables a user to view events by city.
 
 ## Technical details
 
-The app is built with Create React App with an integration with gh-pages.
+- The app is built with Create React App with an integration with gh-pages.
+- Serverless functions are used to 1. Send the user an e-mail confirmation upon registration 2. Authenticate the users through Google OAuth 3. Fetch data from the google calendar API when the user requests the information 4. Conduct additional data processing to provide the desired information/format to the user.
 
 ## Dependencies
 
