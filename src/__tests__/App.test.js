@@ -1,6 +1,6 @@
 // src/__tests__/App.test.js
 
-import { render, within } from "@testing-library/react";
+import { render, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { getEvents } from "../api";
 import App from "../App";
@@ -25,6 +25,8 @@ describe("<App /> component", () => {
 });
 
 describe("<App /> integration", () => {
+  //optimize by adding beforeEach
+
   test("renders a list of events matching the city selected by the user", async () => {
     const user = userEvent.setup();
     const AppComponent = render(<App />);
@@ -51,6 +53,23 @@ describe("<App /> integration", () => {
 
     allRenderedEventItems.forEach((event) => {
       expect(event.textContent).toContain("Berlin, Germany");
+    });
+  });
+
+  test("renders # of events that the user enters", async () => {
+    const user = userEvent.setup();
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
+
+    const NOEDOM = AppDOM.querySelector("#number-of-events");
+    const NOEInput = within(NOEDOM).queryByRole("textbox");
+
+    await user.type(NOEInput, "{backspace}{backspace}10");
+
+    const EventListDOM = AppDOM.querySelector("#event-list");
+    await waitFor(() => {
+      const EventListItems = within(EventListDOM).queryAllByRole("listitem");
+      expect(EventListItems.length).toBe(10);
     });
   });
 });
