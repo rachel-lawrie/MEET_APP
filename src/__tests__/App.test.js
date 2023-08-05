@@ -64,7 +64,7 @@ describe("<App /> integration", () => {
     const NOEDOM = AppDOM.querySelector("#number-of-events");
     const NOEInput = within(NOEDOM).queryByRole("textbox");
 
-    await user.type(NOEInput, "{backspace}{backspace}10");
+    await user.type(NOEInput, "{backspace}{backspace}10{enter}");
 
     const EventListDOM = AppDOM.querySelector("#event-list");
     await waitFor(() => {
