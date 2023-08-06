@@ -10,7 +10,7 @@ const Event = ({ event }) => {
 
   return (
     <>
-      <li>
+      <li className="event">
         <div>{event.summary}</div>
         <div>{event.created}</div>
         <div>{event.location}</div>
