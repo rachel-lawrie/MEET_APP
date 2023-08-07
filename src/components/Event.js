@@ -17,9 +17,9 @@ const Event = ({ event }) => {
   return (
     <>
       <li className="event">
-        <div>{event.summary}</div>
-        <div>{event.created}</div>
-        <div>{event.location}</div>
+        <h2>{event.summary}</h2>
+        <p>{event.created}</p>
+        <p>{event.location}</p>
         {showDetails ? (
           <div className="details">
             <p>{event.htmlLink}</p>
