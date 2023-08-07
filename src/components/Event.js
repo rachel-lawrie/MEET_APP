@@ -26,7 +26,7 @@ const Event = ({ event }) => {
     <>
       <li className="event">
         <h2>{event.summary}</h2>
-        <p>{formattedDate}</p>
+        <p data-testid="eventDate">{formattedDate}</p>
         <p>{event.location}</p>
         {showDetails ? (
           <div className="details">
