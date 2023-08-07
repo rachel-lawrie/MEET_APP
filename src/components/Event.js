@@ -14,16 +14,26 @@ const Event = ({ event }) => {
   };
   const [buttonText, setButtonText] = useState("Show Details");
 
+  // Create a new date from the "created" timestamp
+  const createdDate = new Date(event.created);
+
+  // Format the date into a more readable format
+  const formattedDate = `${createdDate.getDate()}/${
+    createdDate.getMonth() + 1
+  }/${createdDate.getFullYear()} ${createdDate.getHours()}:${createdDate.getMinutes()}`;
+
   return (
     <>
       <li className="event">
         <h2>{event.summary}</h2>
-        <p>{event.created}</p>
+        <p>{formattedDate}</p>
         <p>{event.location}</p>
         {showDetails ? (
           <div className="details">
-            <p>{event.htmlLink}</p>
             <p>{event.description}</p>
+            <p>
+              <a href={event.htmlLink}>Link</a>
+            </p>
           </div>
         ) : null}
         <button className="DetailsButton" onClick={handleItemClicked}>
