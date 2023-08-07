@@ -6,7 +6,13 @@ const Event = ({ event }) => {
   const [showDetails, setShowDetails] = useState(false);
   const handleItemClicked = () => {
     setShowDetails((prevShowDetails) => !prevShowDetails); // to hide the details
+    if (buttonText === "Show Details") {
+      setButtonText("Hide Details");
+    } else {
+      setButtonText("Show Details");
+    }
   };
+  const [buttonText, setButtonText] = useState("Show Details");
 
   return (
     <>
@@ -16,17 +22,14 @@ const Event = ({ event }) => {
         <div>{event.location}</div>
         {showDetails ? (
           <div className="details">
-            <div>{event.htmlLink}</div>
-            <div>{event.description}</div>
-            <button className="HideDetailsButton" onClick={handleItemClicked}>
-              hide details
-            </button>
+            <p>{event.htmlLink}</p>
+            <p>{event.description}</p>
           </div>
         ) : null}
+        <button className="DetailsButton" onClick={handleItemClicked}>
+          {buttonText}
+        </button>
       </li>
-      <button className="DetailsButton" onClick={handleItemClicked}>
-        show details
-      </button>
     </>
   );
 };
