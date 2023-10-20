@@ -7,6 +7,7 @@ const NumberOfEvents = ({ setCurrentNOE }) => {
     setNumber(Number(event.target.value));
   };
 
+  //evaluate whether this can be simplified - and remove console logs
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       console.log("Test: handleInputChanged is called");

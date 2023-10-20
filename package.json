@@ -51,6 +51,9 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^5.0.0",
+    "jest-cucumber": "^3.0.1",
+    "prettier": "^3.0.3",
+    "puppeteer": "^19.4.0"
   }
 }
