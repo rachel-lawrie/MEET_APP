@@ -8,7 +8,7 @@ describe("<NumberOfEvents /> component", () => {
   let NumberOfEventsComponent;
   beforeEach(() => {
     NumberOfEventsComponent = render(
-      <NumberOfEvents setCurrentNOE={jest.fn()} />
+      <NumberOfEvents setCurrentNOE={jest.fn()} setErrorAlert={() => {}} />
     );
   });
 

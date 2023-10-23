@@ -1,10 +1,16 @@
 import { useState } from "react";
 
-const NumberOfEvents = ({ setCurrentNOE }) => {
+const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
   const [number, setNumber] = useState(32);
 
   const handleInputChanged = (event) => {
-    setNumber(Number(event.target.value));
+    const inputValue = event.target.value;
+    setNumber(event.target.value);
+    if (isNaN(inputValue) || inputValue <= 0) {
+      setErrorAlert("Only positive numbers allowed");
+    } else {
+      setErrorAlert("");
+    }
   };
 
   const handleKeyPress = (event) => {
