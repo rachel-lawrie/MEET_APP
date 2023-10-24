@@ -50,7 +50,7 @@ const CityEventsChart = ({ allLocations, events }) => {
         />
         <YAxis
           type="number"
-          dataKey="countnumber"
+          dataKey="count"
           name="Number of events"
           allowDecimals={false}
         />
