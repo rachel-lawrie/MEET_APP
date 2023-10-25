@@ -21,44 +21,40 @@ const EventGenresChart = ({ events }) => {
     return data;
   };
 
-  //   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
-
-  //   const RADIAN = Math.PI / 180;
-  //   const renderCustomizedLabel = ({
-  //     cx,
-  //     cy,
-  //     midAngle,
-  //     innerRadius,
-  //     outerRadius,
-  //     percent,
-  //     index,
-  //   }) => {
-  //     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  //     const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  //     const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  //     return (
-  //       <text
-  //         x={x}
-  //         y={y}
-  //         fill="white"
-  //         textAnchor={x > cx ? "start" : "end"}
-  //         dominantBaseline="central"
-  //       >
-  //         {`${(percent * 100).toFixed(0)}%`}
-  //       </text>
-  //     );
-  //   };
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    outerRadius,
+    percent,
+    index,
+  }) => {
+    const RADIAN = Math.PI / 180;
+    const radius = outerRadius;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN) * 1.07;
+    const y = cy + radius * Math.sin(-midAngle * RADIAN) * 1.07;
+    return percent ? (
+      <text
+        x={x}
+        y={y}
+        fill="#8884d8"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+      >
+        {`${genres[index]} ${(percent * 100).toFixed(0)}%`}
+      </text>
+    ) : null;
+  };
 
   return (
-    <ResponsiveContainer className="event-chart" width="99%" height={400}>
+    <ResponsiveContainer width="99%" height={400}>
       <PieChart width={400} height={400}>
         <Pie
           data={data}
           //   cx="50%"
           //   cy="50%"
           labelLine={false}
-          //   label={renderCustomizedLabel}
+          label={renderCustomizedLabel}
           outerRadius={130}
           fill="#8884d8"
           dataKey="value"
