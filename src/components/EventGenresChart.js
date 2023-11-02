@@ -1,7 +1,7 @@
 // src/components/EventGenresChart.js
 
 import { useState, useEffect } from "react";
-import { PieChart, Pie, ResponsiveContainer } from "recharts";
+import { Cell, PieChart, Pie, ResponsiveContainer } from "recharts";
 
 const EventGenresChart = ({ events }) => {
   const [data, setData] = useState([]);
@@ -12,14 +12,16 @@ const EventGenresChart = ({ events }) => {
   }, [`${events}`]);
 
   const getData = () => {
-    const data = genres.map((genre) => {
+    const data = genres.map((genre, index) => {
       const filteredEvents = events.filter((event) =>
         event.summary.includes(genre)
       );
-      return { name: genre, value: filteredEvents.length };
+      return { name: genre, value: filteredEvents.length, fill: colors[index] };
     });
     return data;
   };
+
+  const colors = ["#8884d8", "#82ca9d", "#ffc658", "#d84a05", "#0088FE"];
 
   const renderCustomizedLabel = ({
     cx,
@@ -37,11 +39,11 @@ const EventGenresChart = ({ events }) => {
       <text
         x={x}
         y={y}
-        fill="#8884d8"
+        fill={`${data[index].name} ${(percent * 100).toFixed(0)}%`}
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
       >
-        {`${genres[index]} ${(percent * 100).toFixed(0)}%`}
+        {`${data[index].name} ${(percent * 100).toFixed(0)}%`}
       </text>
     ) : null;
   };
@@ -59,9 +61,9 @@ const EventGenresChart = ({ events }) => {
           fill="#8884d8"
           dataKey="value"
         >
-          {/* {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))} */}
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={entry.fill} />
+          ))}
         </Pie>
       </PieChart>
     </ResponsiveContainer>
